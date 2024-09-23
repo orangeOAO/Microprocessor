@@ -42,7 +42,7 @@ LK:
         CMP		AR4,#5
         B		PLLLOCK,LEQ
 
-        MOV		@SYSCLKDIVSEL,#0x0001	;Set divider to produce slower output frequency to limit current increase
+        MOV		@SYSCLKDIVSEL,#0x0004	;400M/4=100M;Set divider to produce slower output frequency to limit current increase
         TSET	@SYSPLLCTL1,#0
         TSET	@SYSPLLCTL1,#1
 
@@ -92,7 +92,7 @@ LK:
 ;		MOV   	@PIEACK,#0x0001   		;ADC
 
 		AND   	IFR,#0x0000       		;Clear interrupt flag
-		 OR    	IER,#0x1000      		;Enable interrupt group 13 (Timer1)
+		 OR    	IER,#0x3000      		;Enable interrupt group 13、14 (Timer1、Timer2)
 
 
 ;======================================================================================
@@ -102,8 +102,24 @@ LK:
 		MOVW	DP,#Timerpage		;CPU Timer0,1,2	page
 
 		MOV		@TIMER1TIM,#0	;先將Timer1之counts清零
-		MOV		@TIMER1PRD,#2000	;設定Timer1中斷週期 2000*1/200M = 10us
+		MOV		@TIMER1PRD,#20000	;設定Timer1中斷週期 20000*1/200M = 100us
 		MOV		@TIMER1TCR,#0x4800  ;Enable Timer1, Free run
+
+
+
+;======================================================================================
+;							End CPU Timer setting
+;======================================================================================
+
+;======================================================================================
+;							CPU Timer2 setting
+;======================================================================================
+
+		MOVW	DP,#Timerpage		;CPU Timer0,1,2	page
+
+		MOV		@TIMER2TIM,#0	;先將Timer1之counts清零
+		MOV		@TIMER2PRD,#80000   ;設定Timer2中斷週期 80000*1/200M = 400us
+		MOV		@TIMER2TCR,#0x4800  ;Enable Timer2, Free run
 
 
 
