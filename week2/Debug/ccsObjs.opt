@@ -1,5 +1,0 @@
-"./Timer1_interrupt.obj"
-"./source_main.obj"
-"./source_vectors_377.obj"
-"../memory.cmd"
--llibc.a
