@@ -12,9 +12,30 @@ PVECTORS_13:
 
 ;=======================================================================
 		MOVW	DP,#GPIODatapage
+
 		TSET	@GPASET,#3
-		RPT		#1000				;Delay 200 cycle(10us)
+
+		RPT		#100				;Delay 100 cycle(10us)
 		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+		RPT		#100				;Delay 100 cycle(10us)
+		||		NOP
+
 
 		TSET	@GPACLEAR,#3
 		IRET

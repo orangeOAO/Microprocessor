@@ -42,7 +42,7 @@ LK:
         CMP		AR4,#5
         B		PLLLOCK,LEQ
 
-        MOV		@SYSCLKDIVSEL,#0x0004	;400M/4=100M;Set divider to produce slower output frequency to limit current increase
+        MOV		@SYSCLKDIVSEL,#0x0002	;200M/2=100M;Set divider to produce slower output frequency to limit current increase
         TSET	@SYSPLLCTL1,#0
         TSET	@SYSPLLCTL1,#1
 
@@ -102,7 +102,7 @@ LK:
 		MOVW	DP,#Timerpage		;CPU Timer0,1,2	page
 
 		MOV		@TIMER1TIM,#0	;先將Timer1之counts清零
-		MOV		@TIMER1PRD,#20000	;設定Timer1中斷週期 20000*1/200M = 100us
+		MOV		@TIMER1PRD,#9999	;設定Timer1中斷週期 20000*1/200M = 100us
 		MOV		@TIMER1TCR,#0x4800  ;Enable Timer1, Free run
 
 
@@ -117,8 +117,8 @@ LK:
 
 		MOVW	DP,#Timerpage		;CPU Timer0,1,2	page
 
-		MOV		@TIMER2TIM,#0	;先將Timer1之counts清零
-		MOV		@TIMER2PRD,#80000   ;設定Timer2中斷週期 80000*1/200M = 400us
+		MOV		@TIMER2TIM,#0	;先將Timer2之counts清零
+		MOV		@TIMER2PRD,#39999   ;設定Timer2中斷週期 40000*1/100M = 400us
 		MOV		@TIMER2TCR,#0x4800  ;Enable Timer2, Free run
 
 
@@ -169,7 +169,7 @@ DELAY_1ms:
 
 		MOVW	DP,#GPIOpageA					;GPIOpageA
 ;--------------------------GPIO0~GPIO44 function------------------------
-		MOV		@GPAMUX1,#0000000000000000b		;Fuction of GPIO0~GPIO7
+		MOV		@GPAMUX1,#00000000000000b		;Fuction of GPIO0~GPIO7
                          ;\\\\\\\\\\\\\\== ---->;GPIO0
                          ;\\\\\\\\\\\\==   ---->;GPIO1
                          ;\\\\\\\\\\==     ---->;GPIO2
@@ -231,7 +231,7 @@ DELAY_1ms:
 ;-----------------------GPIO Mux dierection------------------------------
 ;0:Input , 1:Output , defalt is 0:Input
 		MOVW	DP,#GPIOpageA			;GPIOpage2
-		MOV    	@GPADIR,#0x000F      	;0~15;GPIO0 is output
+		MOV    	@GPADIR,#0x001F      	;0~15;GPIO0 is output
 		MOV		@GPADIR+1,#0x8405		;16~31;GPIO16,18,26,31 are output
 
 		MOVW	DP,#GPIOpageB					;GPIOpageB
@@ -241,7 +241,7 @@ DELAY_1ms:
 ;0:initial value is 0(low), 1:initial value is 1(high)
 		MOVW	DP,#GPIODatapage			;GPIOpage2
 		MOV		@GPACLEAR,#0xFFFF
-		MOV		@GPADAT,#0x0000			;GPIO0~GPIO15
+		MOV		@GPADAT,#0x0000		;GPIO0~GPIO15
 		MOV		@GPADAT+1,#0x0000		;GPIO16~GPIO31
 
         MOV		@GPBDAT,#0x0000			;GPIO32~GPIO44
@@ -279,7 +279,7 @@ PVECTORS_10			B		PVECTORS_10,UNC
 PVECTORS_11			B		PVECTORS_11,UNC
 PVECTORS_12			B		PVECTORS_12,UNC
 ;PVECTORS_13			B		PVECTORS_13,UNC ;CPU-Timer1
-PVECTORS_14			B		PVECTORS_14,UNC ;CPU-Timer2
+;PVECTORS_14			B		PVECTORS_14,UNC ;CPU-Timer2
 PVECTORS_15			B		PVECTORS_15,UNC
 PVECTORS_16			B		PVECTORS_16,UNC
 PVECTORS_17			B		PVECTORS_17,UNC

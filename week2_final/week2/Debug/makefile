@@ -11,6 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./Timer1_interrupt.obj" \
+"./Timer2_interrupt.obj" \
 "./source_main.obj" \
 "./source_vectors_377.obj" \
 "../memory.cmd" \
@@ -143,8 +144,8 @@ week2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Timer1_interrupt.obj" "source_main.obj" "source_vectors_377.obj" 
-	-$(RM) "Timer1_interrupt.d" "source_main.d" "source_vectors_377.d" 
+	-$(RM) "Timer1_interrupt.obj" "Timer2_interrupt.obj" "source_main.obj" "source_vectors_377.obj" 
+	-$(RM) "Timer1_interrupt.d" "Timer2_interrupt.d" "source_main.d" "source_vectors_377.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

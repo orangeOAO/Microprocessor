@@ -10,31 +10,37 @@ CMD_SRCS += \
 
 ASM_SRCS += \
 ../Timer1_interrupt.asm \
+../Timer2_interrupt.asm \
 ../source_main.asm \
 ../source_vectors_377.asm 
 
 OBJS += \
 ./Timer1_interrupt.obj \
+./Timer2_interrupt.obj \
 ./source_main.obj \
 ./source_vectors_377.obj 
 
 ASM_DEPS += \
 ./Timer1_interrupt.d \
+./Timer2_interrupt.d \
 ./source_main.d \
 ./source_vectors_377.d 
 
 OBJS__QUOTED += \
 "Timer1_interrupt.obj" \
+"Timer2_interrupt.obj" \
 "source_main.obj" \
 "source_vectors_377.obj" 
 
 ASM_DEPS__QUOTED += \
 "Timer1_interrupt.d" \
+"Timer2_interrupt.d" \
 "source_main.d" \
 "source_vectors_377.d" 
 
 ASM_SRCS__QUOTED += \
 "../Timer1_interrupt.asm" \
+"../Timer2_interrupt.asm" \
 "../source_main.asm" \
 "../source_vectors_377.asm" 
 

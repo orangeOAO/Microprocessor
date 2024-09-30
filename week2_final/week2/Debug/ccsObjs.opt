@@ -1,4 +1,5 @@
 "./Timer1_interrupt.obj"
+"./Timer2_interrupt.obj"
 "./source_main.obj"
 "./source_vectors_377.obj"
 "../memory.cmd"
